@@ -22,6 +22,13 @@ def chat():
         data = request.get_json()
         message = data.get("message", "")
 
+        print("💬 User sent:", message)  # 👈 1. Log the incoming user message
+
+        # Generate Gemini response
+        response = model.generate_content(message)
+
+        print("🧠 Gemini replied:", response)  # 👈 2. Log Gemini's raw response
+
         response = model.generate_content(message)
 
         if response.candidates and response.candidates[0].content.parts:
